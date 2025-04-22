@@ -28,8 +28,16 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #79d778;
-  background-image: url('src/assets/img/uwu.jpg');
+
+  /* Calm green tone as base */
+  background-color: #a7cbbd; /* Soft pastel green */
+
+  /* Optional calm overlay image */
+  background-image: linear-gradient(
+      rgba(20, 30, 20, 0.6),
+      rgba(52, 100, 52, 0.6)
+    ),
+    url('src/assets/img/uwu.jpg'); /* Add soft dark overlay to calm image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

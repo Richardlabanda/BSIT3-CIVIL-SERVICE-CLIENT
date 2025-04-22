@@ -32,15 +32,14 @@ export default defineComponent({
       email: "",
       password: "",
       password_confirmation: "",
-      loading: false,  // Loading state to disable button during registration
+      loading: false,
     };
   },
   methods: {
     async handleSubmit() {
-      this.loading = true;  // Show loading indicator
+      this.loading = true;
       try {
-        // Send user info to Laravel backend for registration
-        const response = await fetch("http://127.0.0.1:8000/api/register", { // Updated route
+        const response = await fetch("http://127.0.0.1:8000/api/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -49,23 +48,22 @@ export default defineComponent({
             name: this.name,
             email: this.email,
             password: this.password,
-            password_confirmation: this.password_confirmation, // Include password confirmation
+            password_confirmation: this.password_confirmation,
           }),
         });
 
         if (response.ok) {
           alert("Registration successful!");
-          // Redirect to Sign In page after successful registration
-          this.$router.push("/Sign-In");  // Redirect to Sign In page
+          this.$router.push("/Sign-In");
         } else {
           const errorData = await response.json();
           alert(errorData.message || "Failed to register user.");
         }
       } catch (error: any) {
-        alert("An error occurred: " + error.message);  // Handle errors
+        alert("An error occurred: " + error.message);
         console.error("Registration failed:", error);
       } finally {
-        this.loading = false;  // Hide loading indicator
+        this.loading = false;
       }
     },
   },
@@ -77,51 +75,65 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #121212; /* Black background */
+  color: #e1e1e1; /* Soft light gray for text */
 }
 
 .page-container {
   flex-grow: 1;
-  padding: 20px;
-  background: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  max-width: 400px;
+  padding: 30px;
+  background: #1e1e1e; /* Dark gray background for the form */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  max-width: 450px;
   margin: auto;
+  border: 1px solid #333;
 }
 
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: center;
+  color: #B9AEDC; /* Muted lavender for the header */
+  font-size: 2rem;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .auth-form input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 12px;
+  border: 1px solid #444; /* Subtle dark border */
+  background-color: #2a2a2a; /* Dark background for inputs */
+  color: #e1e1e1; /* Light gray text */
+  border-radius: 8px;
   font-size: 16px;
 }
 
+.auth-form input:focus {
+  outline: none;
+  border-color: #A8D5BA; /* Lavender border on focus */
+}
+
 .auth-form button {
-  padding: 10px;
-  background-color: #007bff;
+  padding: 12px;
+  background-color: #4caf50; /* Calm green color */
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
   transition: background-color 0.3s;
 }
 
 .auth-form button:disabled {
-  background-color: #cccccc;
+  background-color: #8bc34a; /* Lighter green when disabled */
   cursor: not-allowed;
 }
 
 .auth-form button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #388e3c; /* Darker green on hover */
 }
 </style>

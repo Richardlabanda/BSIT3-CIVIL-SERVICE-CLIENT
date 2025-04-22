@@ -123,20 +123,18 @@ export default defineComponent({
     },
   },
   methods: {
-    // Load questions based on selected category
     async loadQuestions(category) {
       try {
         const response = await fetch(`http://127.0.0.1:8000/api/questions?category=${category}`);
         const data = await response.json();
         this.questions = data;
-        this.userAnswers = Array(data.length).fill('');  // Initialize answers to empty strings
+        this.userAnswers = Array(data.length).fill(''); 
         this.selectedCategory = category;
       } catch (error) {
         console.error("Error loading questions:", error);
       }
     },
 
-    // Start the exam
     startExam() {
       const user = localStorage.getItem("user");
       if (!user) {
@@ -148,12 +146,10 @@ export default defineComponent({
       this.examFinished = false;
     },
 
-    // Submit exam and calculate the score
-    // This is the method where you are using `await`
+    
 async submitExam() {
   this.examFinished = true;
 
-  // Calculate score
   this.score = this.userAnswers.reduce((score, answer, index) => {
     const correctAnswer = this.getCorrectAnswer(this.questions[index]);
     if (this.isAnswerCorrect(this.questions[index], answer)) {
@@ -162,7 +158,6 @@ async submitExam() {
     return score;
   }, 0);
 
-  // Save score to backend using async/await
   const user = JSON.parse(localStorage.getItem("user"));
   if (!user) {
     alert("You must be logged in to record your score.");
@@ -187,7 +182,6 @@ async submitExam() {
     const result = await response.json();
     console.log(result.message);
 
-    // Fetch past scores after submitting the exam
     this.fetchUserScores();
   } catch (error) {
     console.error("Error saving score:", error);
@@ -195,26 +189,22 @@ async submitExam() {
 },
 
 
-    // Get the correct answer for the question
     getCorrectAnswer(question) {
-      return question[`option_${question.correct_answer}`];  // e.g., option_a, option_b, etc.
+      return question[`option_${question.correct_answer}`]; 
     },
 
-    // Compare the selected answer with the correct one
     isAnswerCorrect(question, userAnswer) {
-      const correctAnswer = question.correct_answer; // 'a', 'b', 'c', 'd'
+      const correctAnswer = question.correct_answer;
       const selectedAnswerLetter = this.getSelectedAnswer(question, userAnswer);
       return selectedAnswerLetter === correctAnswer;
     },
 
-    // Get selected answer letter ('a', 'b', 'c', 'd')
     getSelectedAnswer(question, userAnswer) {
       const options = [question.option_a, question.option_b, question.option_c, question.option_d];
       const index = options.indexOf(userAnswer);
       return ['a', 'b', 'c', 'd'][index];
     },
 
-    // Fetch the user scores from the backend
     async fetchUserScores() {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user) return;
@@ -252,9 +242,9 @@ async submitExam() {
   text-align: center;
   max-width: 500px;
   padding: 20px;
-  background-color: #85adc1;
+  background-color: #96a1e1;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(176, 210, 142, 0.1);
+  box-shadow: 0 4px 10px rgba(175, 218, 132, 0.1);
   margin: 0 auto;
   position: absolute;
   top: 50%;
@@ -266,7 +256,7 @@ async submitExam() {
 .submit-btn {
   padding: 15px 30px;
   font-size: 1.2rem;
-  background-color: #007bff;
+  background-color: #8bc34a;
   color: white;
   border: none;
   cursor: pointer;
@@ -277,7 +267,7 @@ async submitExam() {
 
 .start-btn:hover,
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #4b7618;
 }
 
 .auth-warning {
@@ -290,9 +280,9 @@ async submitExam() {
   width: 100%;
   max-width: 800px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #69b931;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(231, 111, 111, 0.1);
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -300,7 +290,7 @@ async submitExam() {
 
 .results-container {
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #f48080;
   border-radius: 8px;
   margin-top: 20px;
 }
@@ -318,6 +308,6 @@ async submitExam() {
 .user-score-history td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #d7bfbf;
 }
 </style>

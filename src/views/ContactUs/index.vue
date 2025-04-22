@@ -10,8 +10,8 @@
         </p>
         
         <div class="contact-info">
-          <p><strong>Email:</strong> <a href="mailto:contact@csme-platform.com">contact@csme-platform.com</a></p>
-          <p><strong>Phone:</strong> 0912-345-6789</p>
+          <p><strong>Email:</strong> samplecompany@gmail.com</p>
+          <p><strong>Phone:</strong> 0942261186</p>
           <p><strong>School:</strong> Microsystems International Institute of Technology (MIIT)</p>
         </div>
       </div>
@@ -43,54 +43,59 @@ export default defineComponent({
 
 .page-container {
   flex-grow: 1;
+  display: flex; /* Enable flex for vertical centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
   padding: 20px;
   background: rgb(23, 20, 20);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 100%; /* Full width */
-  margin: 0px auto; /* Center the container horizontally */
-  max-width: 1200px; /* Set a max-width to keep it readable on large screens */
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-/* Ensure content is stacked vertically */
 .content {
   max-width: 800px;
   width: 100%;
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center;    /* Center content horizontally */
-  gap: 16px;              /* Adds spacing between elements */
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
 }
 
 h1 {
   font-size: 2.8rem;
-  color: #f5c518;
+  color: #d8cbb3;
   margin-bottom: 20px;
   text-align: center;
 }
 
 p {
   font-size: 1.2rem;
-  color: #ddd;
+  color: #B0B0B0;
   line-height: 1.8;
   margin-bottom: 16px;
-  text-align: center;
 }
 
 .contact-info {
   margin-top: 30px;
-  color: #ddd;
-  text-align: center; /* Align the contact info to the left */
-  width: 100%; /* Ensures the contact section aligns well */
+  color: #7fbdbd;
+  width: 100%;
 }
 
 .contact-info p {
   margin-bottom: 10px;
+  color: #7fbdbd;
+  text-decoration: underline;
+  text-align: left;
 }
 
 .contact-info a {
   color: #1a1a18;
   text-decoration: underline;
+  text-align: left;
 }
 
 footer {
@@ -100,4 +105,5 @@ footer {
   text-align: center;
   color: #ffffff;
 }
+
 </style>
